@@ -15,7 +15,7 @@
   "license": "ISC",
   "devDependencies": {
     "@types/inquirer": "^0.0.42",
-    "@types/mime": "^2.0.0",
+    "@types/node": "^10.5.3",
     "@types/puppeteer": "^1.5.1",
     "dotenv-webpack": "^1.5.7",
     "file-loader": "^1.1.11",
@@ -28,7 +28,6 @@
     "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
-    "@types/node": "^10.5.3",
     "dotenv": "^6.0.0",
     "inquirer": "^6.0.0",
     "node-mime": "^1.0.0",
