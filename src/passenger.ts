@@ -94,11 +94,12 @@ export default class Passenger {
     /** 去程: 乘車日期、車次代碼、訂票張數 */
     if (ele.getInDateSelect && ele.trainNumberInput && ele.orderNumberSelect) {
       const dateList = await this.getOptionDateList(ele.getInDateSelect);
-      const dateIndex = dateList
-        .map(date => date.slice(0, 10))
-        .indexOf(CREDENTIALS.TRAVEL_DATE);
+      const readableList = dateList.map(date => date.slice(0, 10));
+      const dateIndex = readableList.indexOf(CREDENTIALS.TRAVEL_DATE);
       if (dateIndex === -1) {
-        throw new Error('去程沒有可選的日期，請重新調整。');
+        console.log(readableList);
+        await browser.close();
+        throw new Error('去程沒有可選的日期，請重新調整上述日期。');
       }
       console.log('=====【去程】=====');
       console.log(`選擇出發時間： ${CREDENTIALS.TRAVEL_DATE}`);
@@ -119,12 +120,12 @@ export default class Passenger {
       ele.orderNumber2Select
     ) {
       const dateList = await this.getOptionDateList(ele.getInDate2Select);
-      const dateIndex = dateList
-        .map(date => date.slice(0, 10))
-        .indexOf(CREDENTIALS.TRAVEL_DATE_HOME);
-
+      const readableList = dateList.map(date => date.slice(0, 10));
+      const dateIndex = readableList.indexOf(CREDENTIALS.TRAVEL_DATE_HOME);
       if (dateIndex === -1) {
-        throw new Error(`回程沒有可選的日期，請重新調整。`);
+        console.log(readableList);
+        await browser.close();
+        throw new Error(`回程沒有可選的日期，請重新調整上述日期。`);
       }
       console.log('=====【回程】=====');
       console.log(`選擇回程時間： ${CREDENTIALS.TRAVEL_DATE_HOME}`);
@@ -158,6 +159,11 @@ export default class Passenger {
     /** close the browser */
     const resultImgBuffer = await page.screenshot();
     console.log(await terminalImage.buffer(resultImgBuffer));
+
+    const successOrderCode = await page.$('#spanOrderCode');
+    if (successOrderCode) {
+      await page.screenshot({ path: 'success.png' });
+    }
     await browser.close();
 
     console.log('------ session closed -------');
