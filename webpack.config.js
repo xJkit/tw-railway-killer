@@ -1,11 +1,12 @@
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
+const nodeExternals = require('webpack-node-externals');
 
 const ENV = process.env.ENV || 'development';
 
 module.exports = {
   entry: path.resolve(__dirname, 'src/index.ts'),
-  target: 'node',
+  target: 'node-webkit',
   output: {
     filename: 'index.js',
     path: path.resolve(__dirname, 'dist')
@@ -14,10 +15,16 @@ module.exports = {
     extensions: ['.ts', '.tsx', '.js']
   },
   module: {
+    exprContextCritical: true,
     rules: [
       {
         test: /\.tsx?$/,
         use: 'ts-loader'
+      },
+      {
+        type: 'javascript/auto',
+        test: /.(json|html)/,
+        use: 'file-loader'
       }
     ]
   },
@@ -28,5 +35,6 @@ module.exports = {
       safe: true,
       systemvars: true
     })
-  ]
+  ],
+  externals: [nodeExternals()]
 };

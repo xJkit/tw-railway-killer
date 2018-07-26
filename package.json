@@ -6,25 +6,32 @@
   "scripts": {
     "start": "node dist/index.js",
     "watch": "ENV=development webpack --watch --config webpack.config.js",
-    "build": "ENV=production webpack --config webpack.config.js"
+    "build": "ENV=production webpack --config webpack.config.js",
+    "prepare": "npm run build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/inquirer": "^0.0.42",
+    "@types/mime": "^2.0.0",
+    "@types/puppeteer": "^1.5.1",
     "dotenv-webpack": "^1.5.7",
+    "file-loader": "^1.1.11",
     "ts-loader": "^4.4.2",
     "tslint": "^5.11.0",
     "tslint-config-prettier": "^1.14.0",
     "typescript": "^2.9.2",
     "webpack": "^4.16.2",
-    "webpack-cli": "^3.1.0"
+    "webpack-cli": "^3.1.0",
+    "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
     "@types/node": "^10.5.3",
     "dotenv": "^6.0.0",
     "inquirer": "^6.0.0",
-    "puppeteer": "^1.6.1"
+    "node-mime": "^1.0.0",
+    "puppeteer": "^1.6.1",
+    "terminal-image": "^0.1.1"
   }
 }
