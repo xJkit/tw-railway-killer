@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/inquirer": "^0.0.42",
     "dotenv-webpack": "^1.5.7",
     "ts-loader": "^4.4.2",
     "tslint": "^5.11.0",
@@ -23,6 +24,7 @@
   "dependencies": {
     "@types/node": "^10.5.3",
     "dotenv": "^6.0.0",
+    "inquirer": "^6.0.0",
     "puppeteer": "^1.6.1"
   }
 }
