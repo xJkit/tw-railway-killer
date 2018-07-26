@@ -1,4 +1,4 @@
-import * as inquirer from 'inquirer';
+import inquirer from 'inquirer';
 export enum TicketOrderMode {
   ONE_WAY = 'http://railway.hinet.net/Foreign/TW/etno1.html',
   ROUND_TRIP = 'http://railway.hinet.net/Foreign/TW/etno_roundtrip.html'
@@ -7,6 +7,10 @@ export enum TicketOrderMode {
 export type STATION_CODE_TYPE = {
   [key: string]: string;
 };
+
+export interface IQuestions {
+  [key: string]: inquirer.Question;
+}
 
 export interface ICredentials {
   ID: string;
@@ -32,10 +36,6 @@ export const CREDENTIALS: ICredentials = {
   TRAVEL_DATE_HOME: process.env.TRAVEL_DATE_HOME || ''
 };
 
-export interface IQuestions {
-  selectOrderMode: inquirer.Question;
-}
-
 export const QUESTIONS: IQuestions = {
   selectOrderMode: {
     type: 'list',
@@ -51,14 +51,20 @@ export const QUESTIONS: IQuestions = {
         value: TicketOrderMode.ROUND_TRIP
       }
     ]
+  },
+  captchaCode: {
+    type: 'input',
+    name: 'captchaCode',
+    message: '請輸入驗證碼：'
   }
 };
 
 export const STATION_TO_CODE: STATION_CODE_TYPE = {
+  台東: '004',
   汐止: '096',
   南港: '097',
   松山: '098',
   台北: '100',
-  台南: '175',
-  台東: '004'
+  板橋: '102',
+  台南: '175'
 };

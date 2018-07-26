@@ -1,6 +1,7 @@
+import inquirer from 'inquirer';
 import puppeteer from 'puppeteer';
 import terminalImage from 'terminal-image';
-import { CREDENTIALS, STATION_TO_CODE } from './constants';
+import { CREDENTIALS, STATION_TO_CODE, QUESTIONS } from './constants';
 
 export interface IStep1Elements {
   [key: string]: puppeteer.ElementHandle | null;
@@ -36,6 +37,11 @@ export default class Passenger {
     return await Promise.all(values);
   }
 
+  public async getCaptchaImgBuffer(page: puppeteer.Page) {
+    const img = await page.$('#idRandomPic');
+    return img && img.screenshot();
+  }
+
   public async getStep1Elmts(page: puppeteer.Page): Promise<IStep1Elements> {
     return {
       /** 基本資料 */
@@ -55,6 +61,13 @@ export default class Passenger {
 
       // ====
       submitBtn: await page.$('.btn.btn-primary') // 開始訂票按鈕
+    };
+  }
+
+  public async getStep2Elmts(page: puppeteer.Page) {
+    return {
+      captchaInput: await page.$('#randInput'), // 驗證碼 Input
+      submitBtn: await page.$('#sbutton') // 送出按鈕
     };
   }
 
@@ -125,8 +138,6 @@ export default class Passenger {
       console.log('==================');
     }
 
-    console.log(await terminalImage.buffer(await page.screenshot()));
-
     /** 提交資料 */
     ele.submitBtn && (await ele.submitBtn.click());
 
@@ -134,13 +145,21 @@ export default class Passenger {
     await page.waitForNavigation({ waitUntil: 'load' });
 
     console.log('---step 2: Captcha---');
-    const imgBuf = await page.screenshot();
+    const ele2 = await this.getStep2Elmts(page);
+    const imgBuf = await this.getCaptchaImgBuffer(page);
     console.log(await terminalImage.buffer(imgBuf));
+    const { captchaCode }: inquirer.Answers = await inquirer.prompt([
+      QUESTIONS.captchaCode
+    ]);
+
+    ele2.captchaInput && (await ele2.captchaInput.type(captchaCode));
+    ele2.submitBtn && (await ele2.submitBtn.click());
 
     /** close the browser */
+    const resultImgBuffer = await page.screenshot();
+    console.log(await terminalImage.buffer(resultImgBuffer));
     await browser.close();
-    console.log('====================================');
-    console.log('browser closed');
-    console.log('====================================');
+
+    console.log('------ session closed -------');
   }
 }
