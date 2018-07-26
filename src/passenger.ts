@@ -156,6 +156,9 @@ export default class Passenger {
     ele2.captchaInput && (await ele2.captchaInput.type(captchaCode));
     ele2.submitBtn && (await ele2.submitBtn.click());
 
+    console.log('--- 等待頁面跳轉 ---');
+    await page.waitForNavigation({ waitUntil: 'load' });
+
     /** close the browser */
     const resultImgBuffer = await page.screenshot();
     console.log(await terminalImage.buffer(resultImgBuffer));
