@@ -108,6 +108,7 @@ export const QUESTIONS: IQuestions = {
   }
 };
 
+// TODO: Add more station codes
 export const STATION_TO_CODE: STATION_CODE_TYPE = {
   台東: '004',
   汐止: '096',
