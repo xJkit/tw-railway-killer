@@ -85,6 +85,14 @@ export default class Passenger {
     const ele = await this.getStep1Elmts(page);
     const fromStationCode = STATION_TO_CODE[CREDENTIALS.FROM_STATION];
     const toStationCode = STATION_TO_CODE[CREDENTIALS.TO_STATION];
+
+    // TODO: Add all credentials into this and validate all at once.
+    if (!fromStationCode || !toStationCode) {
+      throw new Error(
+        '沒有對應的站牌，詳情請參考：http://railway.hinet.net/station_code.htm 然後再試一次。'
+      );
+    }
+
     /** 基本資料 */
     ele.idInput && (await ele.idInput.type(CREDENTIALS.ID));
     ele.fromStationSelect &&
