@@ -62,49 +62,58 @@ export const QUESTIONS: IQuestions = {
   ID: {
     type: 'input',
     name: 'ID',
-    message: '請輸入身分證字號：'
+    message: '請輸入身分證字號：',
+    default: '未輸入'
   },
   fromStation: {
     type: 'input',
     name: 'fromStation',
-    message: '請輸入起站站名（中文）：'
+    message: '請輸入起站站名（中文）：',
+    default: '未輸入'
   },
   toStation: {
     type: 'input',
     name: 'toStation',
-    message: '請輸入迄站站名（中文）：'
+    message: '請輸入迄站站名（中文）：',
+    default: '未輸入'
   },
   trainNo: {
     type: 'input',
     name: 'trainNo',
-    message: '請輸入去程車次代號：'
+    message: '請輸入去程車次代號：',
+    default: '未輸入'
   },
   ticketCount: {
     type: 'list',
     name: 'ticketCount',
     message: '請選擇張數：',
+    default: 1,
     choices: _range(1, 7).map(value => ({ name: `${value} 張`, value }))
   },
   ticketCountHome: {
     type: 'list',
     name: 'ticketCountHome',
     message: '請選擇張數(回程)：',
+    default: 1,
     choices: _range(1, 7).map(value => ({ name: `${value} 張`, value }))
   },
   travelDate: {
     type: 'input',
     name: 'travelDate',
-    message: '請輸入去程日期(yyyy/mm/dd)：'
+    message: '請輸入去程日期(yyyy/mm/dd)：',
+    default: '未輸入'
   },
   travelDateHome: {
     type: 'input',
     name: 'travelDateHome',
-    message: '請輸入回程日期(yyyy/mm/dd)：'
+    message: '請輸入回程日期(yyyy/mm/dd)：',
+    default: '未輸入'
   },
   trainNoHome: {
     type: 'input',
     name: 'trainNoHome',
-    message: '請輸入回程車次代號：'
+    message: '請輸入回程車次代號：',
+    default: '未輸入'
   }
 };
 
