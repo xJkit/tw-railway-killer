@@ -1,6 +1,6 @@
-# 台鐵自動化訂票系統
+# Taiwan Railway Automation Booking Tool Demo
 
-This is the automation cli tool to book the Taiwan railway system. Use `iTerm2` terminal software will have the best UX.
+This is the automation cli tool to book the ticket on the Taiwan railway system. Use `iTerm2` terminal software will have the best UX.
 
 ## Installation
 
@@ -18,9 +18,11 @@ npm install
 npm run start
 ```
 
+---
+
 Just follow the steps in the command line.
 
-## 注意
+## Note
 
 更改過 `.env` 檔後必須重新至少跑一次 `restart` 後才能再跑 `start`:
 
@@ -28,9 +30,13 @@ Just follow the steps in the command line.
 npm run restart # 改過檔案後必須執行一次
 ```
 
-## RoeadMap
+## Disclaimer
+
+All the contents in this project is **only for demo purpose** and provided **as is** without any warranties, express or implied. I make no warranties in relation to the legal information on this project.
+
+<!-- ## RoeadMap
 
 - [ ] 取消訂票
 - [ ] cli 設定 credentials
 - [ ] 自動判別驗證碼
-- [ ] 開多視窗同時訂票
+- [ ] 開多視窗同時訂票 -->

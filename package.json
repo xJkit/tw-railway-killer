@@ -10,7 +10,7 @@
     "watch": "ENV=development webpack --watch --config webpack.config.js",
     "build": "ENV=production webpack --config webpack.config.js",
     "preinstall": "cp .env.example .env",
-    "prepare": "npm run build"
+    "prepare": "npm run build && npm run setup"
   },
   "keywords": [],
   "author": "",

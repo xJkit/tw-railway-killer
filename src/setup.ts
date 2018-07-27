@@ -1,8 +1,18 @@
-import path from 'path';
 import inquirer from 'inquirer';
 import writeFile from 'write';
 import { exec } from 'child_process';
 import { QUESTIONS, TicketOrderMode } from './constants';
+
+const sanitizeString = (
+  dirtyString: TemplateStringsArray,
+  ...values: any[]
+) => {
+  return dirtyString
+    .map(str => str.trim())
+    .filter(Boolean)
+    .map((str, idx) => str + values[idx] + '\n')
+    .reduce((accu, currStr) => accu + currStr);
+};
 
 (async () => {
   let ans = await inquirer.prompt([
@@ -43,22 +53,20 @@ import { QUESTIONS, TicketOrderMode } from './constants';
 
   await writeFile(
     '.env',
-    `
-    ### 基本資訊 ##
+    sanitizeString`
     ID=${ans.ID}
     FROM_STATION=${ans.fromStation}
     TO_STATION=${ans.toStation}
-
-    ## 去程 ##
     TRAIN_NO=${ans.trainNo}
     TICKET_COUNT=${ans.ticketCount}
     TRAVEL_DATE=${ans.travelDate}
-
-    ## 回程 ##
     TRAIN_NO_HOME=${ans.trainNoHome || ''}
     TICKET_COUNT_HOME=${ans.ticketCountHome || ''}
     TRAVEL_DATE_HOME=${ans.travelDateHome || ''}
     `
   );
+
+  console.log('\n');
+  console.log('重新產生設定檔...............');
   await exec('npm run build');
 })();
