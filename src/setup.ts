@@ -15,6 +15,7 @@ const sanitizeString = (
 };
 
 (async () => {
+  console.log('=====開始初始化設定程序，請先填入基本資料======');
   let ans = await inquirer.prompt([
     QUESTIONS.ID,
     QUESTIONS.fromStation,

@@ -4,30 +4,32 @@ This is the automation cli tool to book the ticket on the Taiwan railway system.
 
 ## Installation
 
-You need to have `NodeJS` v7.6+ installed. Follow the steps below:
+You need to have `NodeJS` v7.6+ installed. Just type:
 
 ```sh
-npm install
+npm i
 ```
+
+and just follow the steps in the cli window to finish the initial setup.
 
 ## Uage
 
-開始之前，必須先拷貝 `.env.example` 檔案到 `.env`(自行創建) 並修改成自己的訂票資料。完成後方可進行自動化購票程序。
+After initial setup, just run the following command:
 
 ```sh
 npm run start
 ```
 
----
-
-Just follow the steps in the command line.
-
-## Note
-
-更改過 `.env` 檔後必須重新至少跑一次 `restart` 後才能再跑 `start`:
+if you want to change the personal information, just run
 
 ```sh
-npm run restart # 改過檔案後必須執行一次
+npm run setup
+```
+
+or you can can modify the `.env` file directly, and run:
+
+```sh
+npm run restart # rebuild the source code, including the updated env file
 ```
 
 ## Disclaimer
