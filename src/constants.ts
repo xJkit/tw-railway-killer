@@ -1,29 +1,9 @@
-import inquirer from 'inquirer';
 import _range from 'lodash.range';
+import { ICredentials, IQuestions, STATION_CODE_TYPE } from './types';
 
 export enum TicketOrderMode {
   ONE_WAY = 'http://railway.hinet.net/Foreign/TW/etno1.html',
   ROUND_TRIP = 'http://railway.hinet.net/Foreign/TW/etno_roundtrip.html'
-}
-
-export type STATION_CODE_TYPE = {
-  [key: string]: string;
-};
-
-export interface IQuestions {
-  [key: string]: inquirer.Question;
-}
-
-export interface ICredentials {
-  ID: string;
-  FROM_STATION: string;
-  TO_STATION: string;
-  TRAIN_NO: string;
-  TICKET_COUNT: string;
-  TRAVEL_DATE: string;
-  TRAIN_NO_HOME: string;
-  TICKET_COUNT_HOME: string;
-  TRAVEL_DATE_HOME: string;
 }
 
 export const CREDENTIALS: ICredentials = {

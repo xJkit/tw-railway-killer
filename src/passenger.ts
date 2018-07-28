@@ -2,10 +2,7 @@ import inquirer from 'inquirer';
 import puppeteer from 'puppeteer';
 import terminalImage from 'terminal-image';
 import { CREDENTIALS, STATION_TO_CODE, QUESTIONS } from './constants';
-
-export interface IStep1Elements {
-  [key: string]: puppeteer.ElementHandle | null;
-}
+import { IStep1Elements } from './types';
 
 export default class Passenger {
   readonly target: string;
